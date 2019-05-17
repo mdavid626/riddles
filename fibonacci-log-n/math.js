@@ -1,3 +1,9 @@
+const getLastDigits = (n, numberOfDigits) =>
+  parseInt(n.toString().substr(
+    Math.max(n.toString().length - numberOfDigits, 0),
+    numberOfDigits
+  ), 10);
+
 const runNTimes = (fn, n, initialValue) => {
   let result = initialValue;
   for (let i = 0; i < n; i++) {
@@ -32,5 +38,8 @@ const power = (item, power, multiplyFn) => {
 };
 
 module.exports = {
+  getLastDigits,
+  runNTimes,
+  getPowersOf2,
   power,
 };

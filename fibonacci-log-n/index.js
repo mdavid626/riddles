@@ -1,27 +1,22 @@
 const { multiplyMatrix } = require('./matrix');
-const { power } = require('./math');
+const { power, getLastDigits } = require('./math');
 
 const NUMBER_OF_DIGITS = 6;
+const MATRIX_Q = [[1, 1], [1, 0]];
 
-const getLastDigits = (n) =>
-  parseInt(n.toString().substr(
-    Math.max(n.toString().length - NUMBER_OF_DIGITS, 0),
-    NUMBER_OF_DIGITS
-  ), 10);
+const getLastDigitsFn = (n) => getLastDigits(n, NUMBER_OF_DIGITS);
 
 const multiplyMatrixLastDigits = (matrix1, matrix2) =>
-  multiplyMatrix(matrix1, matrix2).map(getLastDigits);
+  multiplyMatrix(matrix1, matrix2)
+    .map(row => row.map(getLastDigitsFn));
 
 const fibonacciLast6Digits = (n) => {
-  if (n <= 0) {
-    return 0;
+  if (n === 0 || n === 1) {
+    return n;
   }
-  if (n === 1) {
-    return 1;
-  }
-  const q = [1, 1, 1, 0];
-  const raisedQ = power(q, n - 1, multiplyMatrixLastDigits);
-  return raisedQ[0];
+
+  const matrix = power(MATRIX_Q, n - 1, multiplyMatrixLastDigits);
+  return matrix[0][0];
 };
 
 module.exports = fibonacciLast6Digits;
