@@ -7,9 +7,9 @@ const fibonacciLast6Digits = (n) => {
   if (n === 1) {
     return 1;
   }
-  const q = [[1, 1], [1, 0]];
+  const q = [1, 1, 1, 0];
   const raisedQ = raiseMatrixToPower(q, n - 1);
-  return raisedQ[0][0];
+  return raisedQ[0];
 };
 
 module.exports = fibonacciLast6Digits;
