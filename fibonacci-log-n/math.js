@@ -3,7 +3,7 @@ const { runNTimes } = require('./utils');
 const getLastDigits = (n, numberOfDigits) =>
   parseInt(n.toString().substr(
     Math.max(n.toString().length - numberOfDigits, 0),
-    numberOfDigits
+    numberOfDigits,
   ), 10);
 
 const getPowersOf2 = (n) =>
