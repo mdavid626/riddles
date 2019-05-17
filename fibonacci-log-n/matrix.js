@@ -26,15 +26,27 @@ const runNTimes = (fn, n, initialValue) => {
   return result;
 };
 
+const getPowersOf2 = (n) =>
+  n.toString(2)
+    .split('')
+    .reverse()
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => item !== '0')
+    .map(({ index }) => index);
+
 const raiseMatrixToPower = (matrix, power) => {
-  const highestPowerOf2 = Math.floor(Math.log2(power));
-  const rest = power - Math.pow(2, highestPowerOf2);
+  const powersOf2 = getPowersOf2(power);
 
-  const subResult = runNTimes(
-    (result) => multiplyMatrixLastDigits(result, result), highestPowerOf2, matrix);
+  const subResults = powersOf2.map((power) => runNTimes(
+    (result) => multiplyMatrixLastDigits(result, result),
+    power,
+    matrix
+  ));
 
-  const result = runNTimes(
-    (result) => multiplyMatrixLastDigits(result, matrix), rest, subResult);
+  const result = subResults.filter((_, index) => index > 0)
+    .reduce((acc, item) =>
+      multiplyMatrixLastDigits(acc, item), subResults[0]
+    );
 
   return result;
 };

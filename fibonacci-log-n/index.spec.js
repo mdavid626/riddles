@@ -5,7 +5,7 @@ const fibonacci = require('./index');
 const test = (n, result) => {
   it(`should be ${result} for N = ${n}`, function () {
     expect(fibonacci(n)).to.be.equal(result);
-  }).timeout(500 * 1000);
+  });
 };
 
 describe('fibonacci last 6 digits', () => {
@@ -32,11 +32,10 @@ describe('fibonacci last 6 digits', () => {
   test(470, 592585);
   test(500, 294125);
   test(100000, 746875);
-  test(1000000, 546875); // 400 ms
-  test(10000000, 546875); // 1.5 sec
-  // test(100000000, 546875); // 30sec
-  // test(1000000000, 546875);
-  // test(2000000000, 546875);
-  // test(2147483647, 546875);
-  test(2147483649, 890274);
+  test(1000000, 546875);
+  test(10000000, 546875);
+  test(100000000, 546875);
+  test(1000000000, 546875);
+  test(2000000000, 453125);
+  test(2147483647, 282973);
 });
