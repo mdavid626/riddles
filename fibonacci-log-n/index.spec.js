@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const fibonacci = require('./index');
 
 const test = (n, result) => {
-  it(`should be ${result} for N = ${n}`, function () {
+  it(`should be ${result} for N = ${n}`, function() {
     expect(fibonacci(n)).to.be.equal(result);
   });
 };

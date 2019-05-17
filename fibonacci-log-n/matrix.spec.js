@@ -2,8 +2,8 @@ const { expect } = require('chai');
 
 const { multiplyMatrix } = require('./matrix');
 
-describe('matrix', function () {
-  it('should multiply matrixes', function () {
+describe('matrix', function() {
+  it('should multiply matrixes', function() {
     const matrix1 = [[2, 3], [4, 5]];
     const matrix2 = [[6, 7], [8, 9]];
     const result = multiplyMatrix(matrix1, matrix2);
