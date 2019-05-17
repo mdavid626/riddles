@@ -10,7 +10,7 @@ const multiplyMatrixLastDigits = (matrix1, matrix2) =>
   multiplyMatrix(matrix1, matrix2)
     .map(row => row.map(getLastDigitsFn));
 
-const fibonacciLast6Digits = (n) => {
+const fibonacciLastDigits = (n) => {
   if (n === 0 || n === 1) {
     return n;
   }
@@ -19,4 +19,4 @@ const fibonacciLast6Digits = (n) => {
   return matrix[0][0];
 };
 
-module.exports = fibonacciLast6Digits;
+module.exports = fibonacciLastDigits;
