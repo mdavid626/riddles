@@ -8,7 +8,7 @@ const test = (n, result) => {
   });
 };
 
-describe('fibonacci last 6 digits', () => {
+describe('fibonacci', () => {
   test(0, 0);
   test(1, 1);
   test(2, 1);

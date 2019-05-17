@@ -1,16 +1,10 @@
+const { runNTimes } = require('./utils');
+
 const getLastDigits = (n, numberOfDigits) =>
   parseInt(n.toString().substr(
     Math.max(n.toString().length - numberOfDigits, 0),
     numberOfDigits
   ), 10);
-
-const runNTimes = (fn, n, initialValue) => {
-  let result = initialValue;
-  for (let i = 0; i < n; i++) {
-    result = fn(result);
-  }
-  return result;
-};
 
 const getPowersOf2 = (n) =>
   n.toString(2)
@@ -26,12 +20,14 @@ const power = (item, power, multiplyFn) => {
   const subResults = powersOf2.map((power) => runNTimes(
     (result) => multiplyFn(result, result),
     power,
-    item
+    item,
   ));
 
-  const result = subResults.filter((_, index) => index > 0)
+  const result = subResults
+    .filter((_, index) => index > 0)
     .reduce((acc, item) =>
-      multiplyFn(acc, item), subResults[0]
+      multiplyFn(acc, item),
+      subResults[0],
     );
 
   return result;

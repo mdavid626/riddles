@@ -2,7 +2,7 @@ const { expect } = require('chai');
 
 const { multiplyMatrix } = require('./matrix');
 
-describe('matrix operations', function () {
+describe('matrix', function () {
   it('should multiply matrixes', function () {
     const matrix1 = [[2, 3], [4, 5]];
     const matrix2 = [[6, 7], [8, 9]];
