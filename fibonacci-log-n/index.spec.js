@@ -2,9 +2,11 @@ const { expect } = require('chai');
 
 const fibonacci = require('./index');
 
+const NUMBER_OF_DIGITS = 6;
+
 const test = (n, result) => {
   it(`should be ${result} for N = ${n}`, () => {
-    expect(fibonacci(n)).to.be.equal(result);
+    expect(fibonacci(n, NUMBER_OF_DIGITS)).to.be.equal(result);
   });
 };
 
