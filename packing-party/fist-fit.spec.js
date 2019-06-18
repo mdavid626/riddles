@@ -19,17 +19,17 @@ describe('first fit distribution', () => {
   });
 
   it('should create one group when two fitting items', () => {
-    const distribution = distribute(2, [1, 1], doFit);
-    expect(distribution).to.deep.equal([[1, 1]]);
+    const distribution = distribute(3, [1, 2], doFit);
+    expect(distribution).to.deep.equal([[1, 2]]);
   });
 
   it('should create two groups when one item fits one group', () => {
-    const distribution = distribute(1, [1, 1], doFit);
-    expect(distribution).to.deep.equal([[1], [1]]);
+    const distribution = distribute(2, [2, 1], doFit);
+    expect(distribution).to.deep.equal([[2], [1]]);
   });
 
   it('should create two groups when first two items fit the first group', () => {
-    const distribution = distribute(2, [1, 1, 1], doFit);
-    expect(distribution).to.deep.equal([[1, 1], [1]]);
+    const distribution = distribute(3, [1, 2, 3], doFit);
+    expect(distribution).to.deep.equal([[1, 2], [3]]);
   });
 });
