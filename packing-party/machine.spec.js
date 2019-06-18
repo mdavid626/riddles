@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { doesFit } = require('./machine');
+const { doFit } = require('./machine');
 
 describe('machine', () => {
   describe('does fit', () => {
@@ -12,7 +12,7 @@ describe('machine', () => {
         { cpu: 1, ram: 1, hdd: 1 },
       ];
 
-      const fits = doesFit(host, vms);
+      const fits = doFit(host, vms);
 
       expect(fits).to.be.true;
     });
@@ -21,7 +21,7 @@ describe('machine', () => {
       const host = { cpu: 3, ram: 3, hdd: 3 };
       const vms = [{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 3, ram: 1, hdd: 1 }];
 
-      const fits = doesFit(host, vms);
+      const fits = doFit(host, vms);
 
       expect(fits).to.be.false;
     });
@@ -30,7 +30,7 @@ describe('machine', () => {
       const host = { cpu: 3, ram: 3, hdd: 3 };
       const vms = [{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 1, ram: 3, hdd: 1 }];
 
-      const fits = doesFit(host, vms);
+      const fits = doFit(host, vms);
 
       expect(fits).to.be.false;
     });
@@ -39,7 +39,7 @@ describe('machine', () => {
       const host = { cpu: 3, ram: 3, hdd: 3 };
       const vms = [{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 1, ram: 1, hdd: 3 }];
 
-      const fits = doesFit(host, vms);
+      const fits = doFit(host, vms);
 
       expect(fits).to.be.false;
     });

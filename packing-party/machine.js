@@ -1,4 +1,4 @@
-const doesFit = (host, vms) => {
+const doFit = (host, vms) => {
   const sum = vms.reduce(
     (acc, vm) => ({
       cpu: (acc.cpu || 0) + vm.cpu,
@@ -11,5 +11,5 @@ const doesFit = (host, vms) => {
 };
 
 module.exports = {
-  doesFit,
+  doFit,
 };
