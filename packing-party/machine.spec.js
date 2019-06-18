@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const { doFit } = require('./machine');
 
 describe('machine', () => {
-  describe('does fit', () => {
+  describe('do fit', () => {
     it('should fit when cpu/ram/hdd fits', () => {
       const host = { cpu: 3, ram: 3, hdd: 3 };
       const vms = [
