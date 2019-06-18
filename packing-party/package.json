@@ -1,0 +1,19 @@
+{
+  "name": "packing-party",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.spec.js",
+    "test:watch": "npm test -- --watch",
+    "lint:fix": "prettier --single-quote --trailing-comma es5 --write **/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "prettier": "1.17.1"
+  }
+}
