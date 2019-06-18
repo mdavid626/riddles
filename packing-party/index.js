@@ -1,5 +1,5 @@
-const distribute = (host, vms) => {
-  return vms.reduce((acc, vm) => {
+const distribute = (host, vms) =>
+  vms.reduce((acc, vm) => {
     const lastHost = acc[acc.length - 1] || [];
     const current = [...lastHost, vm].reduce(
       (acc, vm) => ({
@@ -15,11 +15,10 @@ const distribute = (host, vms) => {
       current.hdd <= host.hdd;
     return fits
       ? [
-          ...acc.filter((_, index) => index !== acc.length - 1),
-          [...lastHost, vm],
-        ]
+        ...acc.filter((_, index) => index !== acc.length - 1),
+        [...lastHost, vm],
+      ]
       : [...acc, [vm]];
   }, []);
-};
 
 module.exports = distribute;
