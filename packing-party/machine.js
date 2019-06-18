@@ -7,11 +7,7 @@ const doesFit = (host, vms) => {
     }),
     {}
   );
-  return (
-    sum.cpu <= host.cpu &&
-    sum.ram <= host.ram &&
-    sum.hdd <= host.hdd
-  );
+  return sum.cpu <= host.cpu && sum.ram <= host.ram && sum.hdd <= host.hdd;
 };
 
 module.exports = {
