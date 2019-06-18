@@ -1,7 +1,8 @@
-const distribute = (host, vms) =>
+const distribute = (hostSpec, vms) =>
   vms.reduce((acc, vm) => {
     const lastHost = acc[acc.length - 1] || [];
-    const current = [...lastHost, vm].reduce(
+    const possibleHost = [...lastHost, vm];
+    const sum = possibleHost.reduce(
       (acc, vm) => ({
         cpu: (acc.cpu || 0) + vm.cpu,
         ram: (acc.ram || 0) + vm.ram,
@@ -10,15 +11,13 @@ const distribute = (host, vms) =>
       {}
     );
     const fits =
-      current.cpu <= host.cpu &&
-      current.ram <= host.ram &&
-      current.hdd <= host.hdd;
-    return fits
-      ? [
-        ...acc.filter((_, index) => index !== acc.length - 1),
-        [...lastHost, vm],
-      ]
-      : [...acc, [vm]];
+      sum.cpu <= hostSpec.cpu &&
+      sum.ram <= hostSpec.ram &&
+      sum.hdd <= hostSpec.hdd;
+    return [
+      ...acc.filter((_, index) => index !== acc.length - 1),
+      ...(fits ? [possibleHost] : [lastHost, [vm]]),
+    ];
   }, []);
 
 module.exports = distribute;
