@@ -1,12 +1,12 @@
 const distribute = (hostSpec, vms) =>
-  vms.reduce((acc, vm) => {
-    const lastHost = acc[acc.length - 1] || [];
+  vms.reduce((distribution, vm) => {
+    const lastHost = distribution[distribution.length - 1] || [];
     const possibleHost = [...lastHost, vm];
     const sum = possibleHost.reduce(
-      (acc, vm) => ({
-        cpu: (acc.cpu || 0) + vm.cpu,
-        ram: (acc.ram || 0) + vm.ram,
-        hdd: (acc.hdd || 0) + vm.hdd,
+      (acc, item) => ({
+        cpu: (acc.cpu || 0) + item.cpu,
+        ram: (acc.ram || 0) + item.ram,
+        hdd: (acc.hdd || 0) + item.hdd,
       }),
       {}
     );
@@ -15,7 +15,7 @@ const distribute = (hostSpec, vms) =>
       sum.ram <= hostSpec.ram &&
       sum.hdd <= hostSpec.hdd;
     return [
-      ...acc.filter((_, index) => index !== acc.length - 1),
+      ...distribution.filter((_, index) => index !== distribution.length - 1),
       ...(fits ? [possibleHost] : [lastHost, [vm]]),
     ];
   }, []);
