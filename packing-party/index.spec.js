@@ -2,31 +2,39 @@ const { expect } = require('chai');
 
 const distribute = require('./index');
 
+const test = ({ host, vms, distribution }) =>
+  it('should distribute', () => {
+    expect(distribute(host, vms)).to.be.deep.equal(distribution);
+  });
+
 describe('distribute vms', () => {
-  it('should distribute to one machine', () => {
-    const host = {
-      cpu: 1,
-      ram: 1,
-      hdd: 1,
-    };
-    const vms = [
-      {
-        cpu: 1,
-        ram: 1,
-        hdd: 1,
-      },
-    ];
+  test({
+    host: { cpu: 1, ram: 1, hdd: 1 },
+    vms: [],
+    distribution: [],
+  });
 
-    const distribution = distribute(host, vms);
+  test({
+    host: { cpu: 1, ram: 1, hdd: 1 },
+    vms: [{ cpu: 1, ram: 1, hdd: 1 }],
+    distribution: [[{ cpu: 1, ram: 1, hdd: 1 }]],
+  });
 
-    expect(distribution).to.be.deep.equal([
-      [
-        {
-          cpu: 1,
-          ram: 1,
-          hdd: 1,
-        },
-      ],
-    ]);
+  test({
+    host: { cpu: 2, ram: 2, hdd: 2 },
+    vms: [{ cpu: 1, ram: 1, hdd: 1 }],
+    distribution: [[{ cpu: 1, ram: 1, hdd: 1 }]],
+  });
+
+  test({
+    host: { cpu: 1, ram: 1, hdd: 1 },
+    vms: [{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 1, ram: 1, hdd: 1 }],
+    distribution: [[{ cpu: 1, ram: 1, hdd: 1 }], [{ cpu: 1, ram: 1, hdd: 1 }]],
+  });
+
+  test({
+    host: { cpu: 2, ram: 2, hdd: 2 },
+    vms: [{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 1, ram: 1, hdd: 1 }],
+    distribution: [[{ cpu: 1, ram: 1, hdd: 1 }, { cpu: 1, ram: 1, hdd: 1 }]],
   });
 });

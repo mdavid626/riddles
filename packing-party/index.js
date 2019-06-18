@@ -1,5 +1,5 @@
 const distribute = (host, vms) => {
-  return 0;
+  return [];
 };
 
 module.exports = distribute;
