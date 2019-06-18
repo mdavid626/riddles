@@ -14,14 +14,15 @@ const getFits = (hostSpec, vms) => {
   );
 };
 
-const distribute = (hostSpec, vms) =>
-  vms.reduce((distribution, vm) => {
-    const lastHost = distribution[distribution.length - 1] || [];
-    const possibleHost = [...lastHost, vm];
-    const fits = getFits(hostSpec, possibleHost);
+const distribute = (host, items) =>
+  items.reduce((distribution, item) => {
+    const lastGroupIndex = distribution.length - 1;
+    const lastGroup = distribution[lastGroupIndex] || [];
+    const possibleGroup = [...lastGroup, item];
+    const fits = getFits(host, possibleGroup);
     return [
-      ...distribution.filter((_, index) => index !== distribution.length - 1),
-      ...(fits ? [possibleHost] : [lastHost, [vm]]),
+      ...distribution.filter((_, index) => index !== lastGroupIndex),
+      ...(fits ? [possibleGroup] : [lastGroup, [item]]),
     ];
   }, []);
 
