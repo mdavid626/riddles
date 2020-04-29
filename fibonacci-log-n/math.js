@@ -11,7 +11,7 @@ const getLastDigits = (n, numberOfDigits) =>
     10
   );
 
-const getPowersOf2 = n =>
+const getPowersOf2 = (n) =>
   n
     .toString(2)
     .split('')
@@ -23,8 +23,8 @@ const getPowersOf2 = n =>
 const power = (item, power, multiplyFn) => {
   const powersOf2 = getPowersOf2(power);
 
-  const subResults = powersOf2.map(power =>
-    runNTimes(result => multiplyFn(result, result), power, item)
+  const subResults = powersOf2.map((power) =>
+    runNTimes((result) => multiplyFn(result, result), power, item)
   );
 
   const result = subResults

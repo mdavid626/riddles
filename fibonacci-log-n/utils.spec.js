@@ -2,7 +2,7 @@ const { expect } = require('chai');
 
 const { runNTimes } = require('./utils');
 
-const pow2 = n => n * n;
+const pow2 = (n) => n * n;
 
 describe('utils', () => {
   describe('runNTimes', () => {
