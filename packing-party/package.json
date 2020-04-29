@@ -13,7 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "prettier": "1.17.1"
+    "mocha": "^7.1.2",
+    "prettier": "^2.0.5"
   }
 }
